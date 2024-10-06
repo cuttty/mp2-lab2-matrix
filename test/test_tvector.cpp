@@ -204,3 +204,30 @@ TEST(TDynamicVector, assert_ne_equal_vectors_return_false)
     TDynamicVector<int> v1(4);
     ASSERT_FALSE(v!=v1);
 }
+
+TEST(TDynamicVector, do_move_semantic)
+{
+    TDynamicVector<int> v(5);
+    int* tmp = v.get_pMem();
+    TDynamicVector<int> v1(std::move(v));
+
+
+    EXPECT_EQ(v.size(), 0);
+    EXPECT_EQ(v.get_pMem(), nullptr);
+
+    EXPECT_EQ(v1.size(), 5);
+    EXPECT_EQ(v1.get_pMem(), tmp);
+}
+
+TEST(TDynamicVector, do_move_semantic_operator) {
+    TDynamicVector<int> v(5);
+    int* tmp = v.get_pMem();
+    TDynamicVector<int> v1 = std::move(v);
+
+    EXPECT_EQ(v.size(), 0);
+    EXPECT_EQ(v.get_pMem(), nullptr);
+
+    EXPECT_EQ(v1.size(), 5);
+    EXPECT_EQ(v1.get_pMem(), tmp);
+
+}
