@@ -205,7 +205,7 @@ TEST(TDynamicVector, assert_ne_equal_vectors_return_false)
     ASSERT_FALSE(v!=v1);
 }
 
-TEST(TDynamicVector, do_move_semantic)
+TEST(TDynamicVector, do_move_semantic_correctly)
 {
     TDynamicVector<int> v(5);
     int* tmp = v.get_pMem();
